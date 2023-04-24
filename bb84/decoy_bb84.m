@@ -131,8 +131,8 @@ Pr_mu = 0.6;
 Pr_nu = 0.3;
 Pr_o  = 0.1;
 %% total photon number of different decoy states
-N_nu = Pr_nu * N;
 N_mu = Pr_mu * N;
+N_nu = Pr_nu * N;
 N_o  = Pr_o * N;
 % base selection
 Pr_Z = 0.5;
@@ -185,7 +185,7 @@ for cnt = 1:1:250
     SF_YZL_1(1,cnt) = (Pmu_2*Q_nu*(1 - DELTA_Z_nu) - Pnu_2*Q_mu*(1 - DELTA_Z_mu) + (Pnu_2*Pmu_0 - Pmu_2*Pnu_0)*YL_0) / (Pnu_1*Pmu_2 - Pmu_1*Pnu_2);
 
     %% single-photon error rate
-    SF_eXU_1(1,cnt) = (T_nu*(1 + DELTA_PRIME_X_nu) - Pnu_0*e_0*YU_0) / (Pnu_1 * SF_YZL_1(1,cnt));
+    SF_eXU_1(1,cnt) = (T_nu*(1 + DELTA_PRIME_X_nu) - Pnu_0*e_0*YL_0) / (Pnu_1 * SF_YZL_1(1,cnt));
 
     %% single-photon key generation rate
     SF_R(1,cnt) = q * (Pmu_1*SF_YZL_1(1,cnt)*(1-binary_shannon_entropy(SF_eXU_1(1,cnt))) - Q_mu*error_correction_rate(E_mu)*binary_shannon_entropy(E_mu));
