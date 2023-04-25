@@ -123,7 +123,7 @@ end
 N = 10^10;
 
 % parameter response rate in single photon, statistic fluctutations included  
-gamma = 5.3;
+Gamma = 5.3;
 
 % Probabilitites
 % photon strength selection
@@ -142,8 +142,8 @@ NZ_mu = N_mu * Pr_Z * Pr_Z;
 NZ_nu = N_nu * Pr_Z * Pr_Z;
 NX_nu = N_nu * Pr_X * Pr_X;
 %% the upper and lower limit of Y_0, the background rate
-YL_0 = Y_0 * (1 - gamma/sqrt(N_o*Y_0));
-YU_0 = Y_0 * (1 + gamma/sqrt(N_o*Y_0));
+YL_0 = Y_0 * (1 - Gamma/sqrt(N_o*Y_0));
+YU_0 = Y_0 * (1 + Gamma/sqrt(N_o*Y_0));
 
 %% probability of i-photon(i=0,1,2) with strength mu or nu
 Pmu_0 = poisspdf(0, mu); %% (P_0)^mu
@@ -177,9 +177,9 @@ for cnt = 1:1:250
     T_mu = overall_qubit_error_rate(mu, Y_0, eta);
     E_mu = average_qubit_error_rate(Q_mu, T_mu);
 
-    DELTA_Z_nu = gamma / sqrt(NZ_nu * Q_nu);
-    DELTA_Z_mu = gamma / sqrt(NZ_mu * Q_mu);
-    DELTA_PRIME_X_nu = gamma / sqrt(NZ_nu * T_nu);
+    DELTA_Z_nu = Gamma / sqrt(NZ_nu * Q_nu);
+    DELTA_Z_mu = Gamma / sqrt(NZ_mu * Q_mu);
+    DELTA_PRIME_X_nu = Gamma / sqrt(NZ_nu * T_nu);
 
     %% single-photon rate
     SF_YZL_1(1,cnt) = (Pmu_2*Q_nu*(1 - DELTA_Z_nu) - Pnu_2*Q_mu*(1 - DELTA_Z_mu) + (Pnu_2*Pmu_0 - Pmu_2*Pnu_0)*YL_0) / (Pnu_1*Pmu_2 - Pmu_1*Pnu_2);
