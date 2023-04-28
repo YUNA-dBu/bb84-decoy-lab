@@ -45,10 +45,10 @@ for cnt = 1:1:250
     E_mu = T_mu / Q_mu;
 
     %% single-photon rate
-    Y_1_inf(1,cnt) = Y_0 + eta_1 - Y_0*eta_1;
+    Y_1_inf(1,cnt) = yield(1, Y_0, eta) %Y_0 + eta_1 - Y_0*eta_1;
 
     %% single-photon error rate
-    e_1_inf(1,cnt) = (e_0*Y_0 + e_d*eta_1) / Y_1_inf(1,cnt);
+    e_1_inf(1,cnt) = photon_error_rate(1, Y_0, Y_1_inf(1,cnt)); %(e_0*Y_0 + e_d*eta_1) / Y_1_inf(1,cnt);
 
     %% single-photon key generation rate
     % 1-photon gain
@@ -199,32 +199,38 @@ L1 = 1:1:250;
 
 % Y_1 figure
 figure
-L11 = plot(L1,Y_1,'.r');
+L11 = plot(L1,Y_1_inf,'b');
 hold on;
-L12 = plot(L1,Y_1_inf,'b');
-L13 = plot(L1,SF_YZL_1,'g');
+L12 = plot(L1,Y_1,'.r');
+L13 = plot(L1,SF_YZL_1);
+L13.Color = "#EDB120";
 xlabel('Distance (km)');
 ylabel('Y_1');
+legend("infinite decoy state","3 decoy state","3-decoy with SF");
 % title('Single Photon response rate')
 
 % e_1 figure
 figure
-L21 = plot(L1,e_1,'.r');
+L21 = plot(L1,e_1_inf,'b');
 hold on;
-L22 = plot(L1,e_1_inf,'b');
-L23 = plot(L1,SF_eXU_1,'g');
+L22 = plot(L1,e_1,'.r');
+L23 = plot(L1,SF_eXU_1);
+L23.Color = "#EDB120";
 xlabel('Distance (km)');
 ylabel('e_1');
+legend("infinite decoy state","3 decoy state","3-decoy with SF");
 % title('Single Photon error rate')
 
 % R figure
 figure
-L31 = semilogy(L1,R,'.r');
+L31 = semilogy(L1,R_inf,'b');
 hold on;
-L32 = semilogy(L1,R_inf,'b');
-L33 = semilogy(L1,SF_R,'g');
+L32 = semilogy(L1,R,'.r');
+L33 = semilogy(L1,SF_R);
+L33.Color = "#EDB120";
 xlabel('Distance (km)');
 ylabel('Key generation rate');
+legend("infinite decoy state","3 decoy state","3-decoy with SF");
 
 % %%--------------------------------------------------------------------------------------------
 
