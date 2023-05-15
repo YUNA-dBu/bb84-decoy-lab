@@ -207,6 +207,7 @@ L13.Color = "#EDB120";
 xlabel('Distance (km)');
 ylabel('Y_1');
 legend("infinite decoy state","3 decoy state","3-decoy with SF");
+ylim([0 0.6])
 % title('Single Photon response rate')
 
 % e_1 figure
@@ -219,6 +220,8 @@ L23.Color = "#EDB120";
 xlabel('Distance (km)');
 ylabel('e_1');
 legend("infinite decoy state","3 decoy state","3-decoy with SF");
+ylim([0 0.5])
+
 % title('Single Photon error rate')
 
 % R figure
